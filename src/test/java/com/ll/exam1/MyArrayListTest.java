@@ -5,6 +5,8 @@ import org.junit.jupiter.api.MethodOrderer;
 import org.junit.jupiter.api.Test;
 import org.junit.jupiter.api.TestMethodOrder;
 
+import java.util.ArrayList;
+import java.util.Arrays;
 import java.util.stream.IntStream;
 
 import static org.assertj.core.api.Assertions.assertThat;
@@ -133,5 +135,36 @@ class MyArrayListTest {
         list.add(false);
 
         assertThat(list.size()).isEqualTo(2);
+    }
+
+    @Test
+    @DisplayName("remove 테스트")
+    void t11() {
+        MyArrayList<String> list = new MyArrayList<>();
+
+        list.add("Element1");
+        list.add("Element2");
+        list.add("Element3");
+
+        assertEquals("Element2", list.remove(1));
+        assertEquals(2, list.size());
+    }
+
+
+    @Test
+    @DisplayName("특정 위치에 삽입(add)테스트")
+    void t12() {
+        MyArrayList<String> list = new MyArrayList<>();
+
+        list.add("Element1");
+        list.add("Element2");
+        list.add("Element3");
+
+        list.add(1, "Element4");
+
+        assertThat(list.get(0)).isEqualTo("Element1");
+        assertThat(list.get(1)).isEqualTo("Element4");
+        assertThat(list.get(2)).isEqualTo("Element2");
+        assertThat(list.get(3)).isEqualTo("Element3");
     }
 }
