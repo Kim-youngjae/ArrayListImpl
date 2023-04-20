@@ -39,8 +39,11 @@ class MyArrayListTest {
         list.add("사과");
         list.add("포도");
 
-        assertThat(list.get(0)).isEqualTo("사과");
-        assertThat(list.get(1)).isEqualTo("포도");
+        String e0 = list.get(0);
+        String e1 = list.get(1);
+
+        assertThat(e0).isEqualTo("사과");
+        assertThat(e1).isEqualTo("포도");
     }
 
     @Test
@@ -49,14 +52,14 @@ class MyArrayListTest {
         MyArrayList<String> list = new MyArrayList<>();
 
         // 초창기 배열의 길이
-        int dataLength1 = ((String[]) (TestUt.getFieldValue(list, "data", null))).length;
+        int dataLength1 = ((Object[]) (TestUt.getFieldValue(list, "data", null))).length;
 
         // IntStream.range(0, 10); // [0...9]
         // 딱 1번 넘칠만큼의 데이터를 넣는다.
         IntStream.range(0, dataLength1 + 1)
                 .forEach(index -> list.add("사과 %d".formatted(index)));
 
-        int dataLength2 = ((String[]) (TestUt.getFieldValue(list, "data", null))).length;
+        int dataLength2 = ((Object[]) (TestUt.getFieldValue(list, "data", null))).length;
         assertThat(dataLength2).isGreaterThan(dataLength1);
     }
 
@@ -67,7 +70,7 @@ class MyArrayListTest {
         MyArrayList<String> list = new MyArrayList<>(200);
 
         // 배열의 길이
-        int dataLength = ((String[]) (TestUt.getFieldValue(list, "data", null))).length;
+        int dataLength = ((Object[]) (TestUt.getFieldValue(list, "data", null))).length;
 
         assertThat(dataLength).isEqualTo(200);
     }
@@ -113,6 +116,17 @@ class MyArrayListTest {
     @Test
     @DisplayName("다양한 타입을 받을 수 있도록 Object로 변경")
     void t09() {
+        MyArrayList<Boolean> list = new MyArrayList<>();
+
+        list.add(true);
+        list.add(false);
+
+        assertThat(list.size()).isEqualTo(2);
+    }
+
+    @Test
+    @DisplayName("다양한 타입을 받을 수 있도록 Object로 변경")
+    void t10() {
         MyArrayList<Boolean> list = new MyArrayList<>();
 
         list.add(true);

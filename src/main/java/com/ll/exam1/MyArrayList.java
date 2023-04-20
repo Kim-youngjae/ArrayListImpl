@@ -57,8 +57,8 @@ public class MyArrayList<T> {
     }
 
     // 해당 위치의 원소를 반환
-    public Object get(int index) {
-        return data[index];
+    public T get(int index) {
+        return (T) data[index];
     }
 
     public int indexOf(T element) {
