@@ -76,7 +76,7 @@ public class MyArrayList<T> {
         return size >= data.length;
     }
 
-    // 해당 위치의 원소를 반
+    // 해당 위치의 원소를 반환
     public T get(int index) {
         return (T) data[index];
     }
